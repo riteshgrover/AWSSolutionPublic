@@ -1,0 +1,156 @@
+{
+    "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01-preview#",
+    "contentVersion": "1.0",
+    "parameters": {
+        "accountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the Azure Automation account to deploy to."
+            }
+        },
+        "credentialName": {
+            "type": "string",
+            "defaultValue": "DefaultAzureCredential",
+            "metadata": {
+                "description": "DefaultAzureCredential is the name of the Automation credential used in this runbook. This credential allows you to authenticate to Azure. "
+            }
+        }
+    },
+  "variables": {
+    "runbookName": "aws_control",
+    "scriptUri": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/aws_control.ps1",
+    "runbookDescription": "My control_module Runbook",
+    "sku": "Free",
+    "runbookName1": "aws_export",
+    "scriptUri1": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/aws_export.ps1",
+    "runbookDescription1": "My aws_export Runbook",
+    "runbookName2": "omsinput",
+    "scriptUri2": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput.ps1",
+    "runbookDescription2": "My omsinput Runbook",
+    "runbookName3": "omsinput_cloudtrail",
+    "scriptUri3": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_cloudtrail.ps1",
+    "runbookDescription3": "My omsinput_cloudtrail Runbook",
+    "runbookName4": "omsinput_rds",
+    "scriptUri4": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_rds.ps1",
+    "runbookDescription4": "My omsinput_rds Runbook"
+
+  },
+    "resources": [
+        {
+            "name": "[parameters('accountName')]",
+            "type": "Microsoft.Automation/automationAccounts",
+            "apiVersion": "2015-01-01-preview",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [],
+            "tags": {},
+            "properties": {
+                "sku": {
+                    "name": "[variables('sku')]"
+                }
+            },
+            "resources": [
+                {
+                    "name": "[variables('runbookName')]",
+                    "type": "runbooks",
+                    "apiVersion": "2015-01-01-preview",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+                    ],
+                    "tags": {},
+                    "properties": {
+                        "runbookType": "Script",
+                        "logProgress": "false",
+                        "logVerbose": "false",
+                        "description": "[variables('runbookDescription')]",
+                        "publishContentLink": {
+                            "uri": "[variables('scriptUri')]",
+                            "version": "1.0.0.0"
+                        }
+                    }
+                },
+                                                {
+                    "name": "[variables('runbookName1')]",
+                    "type": "runbooks",
+                    "apiVersion": "2015-01-01-preview",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+                    ],
+                    "tags": {},
+                    "properties": {
+                        "runbookType": "Script",
+                        "logProgress": "false",
+                        "logVerbose": "false",
+                        "description": "[variables('runbookDescription1')]",
+                        "publishContentLink": {
+                            "uri": "[variables('scriptUri1')]",
+                            "version": "1.0.0.0"
+                        }
+                    }
+                },
+                   {
+                    "name": "[variables('runbookName2')]",
+                    "type": "runbooks",
+                    "apiVersion": "2015-01-01-preview",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+                    ],
+                    "tags": {},
+                    "properties": {
+                        "runbookType": "Script",
+                        "logProgress": "false",
+                        "logVerbose": "false",
+                        "description": "[variables('runbookDescription2')]",
+                        "publishContentLink": {
+                            "uri": "[variables('scriptUri2')]",
+                            "version": "1.0.0.0"
+                        }
+                    }
+                },
+                   {
+                    "name": "[variables('runbookName3')]",
+                    "type": "runbooks",
+                    "apiVersion": "2015-01-01-preview",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+                    ],
+                    "tags": {},
+                    "properties": {
+                        "runbookType": "Script",
+                        "logProgress": "false",
+                        "logVerbose": "false",
+                        "description": "[variables('runbookDescription3')]",
+                        "publishContentLink": {
+                            "uri": "[variables('scriptUri3')]",
+                            "version": "1.0.0.0"
+                        }
+                    }
+                },
+                   {
+                    "name": "[variables('runbookName4')]",
+                    "type": "runbooks",
+                    "apiVersion": "2015-01-01-preview",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+                    ],
+                    "tags": {},
+                    "properties": {
+                        "runbookType": "Script",
+                        "logProgress": "false",
+                        "logVerbose": "false",
+                        "description": "[variables('runbookDescription4')]",
+                        "publishContentLink": {
+                            "uri": "[variables('scriptUri4')]",
+                            "version": "1.0.0.0"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "outputs": {}
+} 
