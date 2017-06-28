@@ -45,9 +45,8 @@
       "var_Description1": "OMS Primary Key Value",
       "var_Encrypted1": 0,
       "var_Type1": "string",
-	  "var_Value1": "'[parameters('OMS_PK')]'"
-	
-
+	  "var_Value1": "[parameters('OMS_PK')]"
+	  
 	
   },
     "resources": [
