@@ -176,7 +176,7 @@
 						"description": "[variables('var_Description1')]",
 						"isEncrypted": "[variables('var_Encrypted1')]",
 						"type": "[variables('var_Type1')]",
-						"value": "[variables('var_Value1')]"
+						"value": "[parameters('OMS_PrimaryKey')]"
 									}
 					}
             ]
