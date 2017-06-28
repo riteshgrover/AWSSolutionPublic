@@ -44,7 +44,8 @@
 	"var_name1": "test",
       "var_Description1": "OMS Primary Key Value",
       "var_Encrypted1": 0,
-      "var_Type1": "string"
+      "var_Type1": "string",
+	  "var_Value1": "This is my string value."
 	
 
 	
@@ -175,7 +176,7 @@
 						"description": "[variables('var_Description1')]",
 						"isEncrypted": "[variables('var_Encrypted1')]",
 						"type": "[variables('var_Type1')]",
-						"value": "[parameters('OMS_PrimaryKey')]"
+						"value": "[variables('var_Value1')]"
 									}
 					}
             ]
