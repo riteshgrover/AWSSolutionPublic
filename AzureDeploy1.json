@@ -19,7 +19,56 @@
             "type": "string",
             "defaultValue": " ",
             "metadata": {
-                "description": "OMS Primary Key Value "
+                "description": "OMS Workspace Primary Key "
+            }
+        },
+		"OMS_WorkspaceID": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "OMS WorkspaceID "
+            }
+        },
+		"OMS_WorkspaceName": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "OMS Workspace Name"
+            }
+        },
+		"OMS_ResourceGroup": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "OMS Resource Group Name"
+            }
+        },
+		"AWS_Region": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "AWS Region"
+            }
+        },
+		"AWS_Accesskey": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "AWS AccessKey"
+            }
+        },
+		"AWS_Profilename": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "AWS Profilename"
+            }
+        },
+		"AWS_Secretkey": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "AWS secretkey"
             }
         }
     },
@@ -41,13 +90,46 @@
     "scriptUri4": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_rds.ps1",
     "runbookDescription4": "My omsinput_rds Runbook",
 
-	"var_name": "try",
-      "var_Description": "Sample variable",
-      "var_Encrypted": 0,
-      "var_Type": "string",
-      "var_Value": "'This is my string value.'"
+	"var_name1": "OMS_PrimaryKey",
+      "var_Description1": "OMS Primary Key Value",
+      "var_Encrypted1": 0,
+      "var_Type1": "string",
 	
-
+	"var_name2": "OMS_WorkspaceID",
+      "var_Description2": "OMS WorkspaceID",
+      "var_Encrypted2": 0,
+      "var_Type2": "string",
+	  
+	"var_name3": "OMS_WorkspaceName",
+      "var_Description3": "OMS Workspace Name",
+      "var_Encrypted3": 0,
+      "var_Type3": "string",
+	
+	"var_name4": "OMS_ResourceGroup",
+      "var_Description4": "OMS Resource Group",
+      "var_Encrypted4": 0,
+      "var_Type4": "string",
+	  
+	"var_name5": "AWS_Region",
+      "var_Description5": "AWS Region",
+      "var_Encrypted5": 0,
+      "var_Type5": "string",
+	
+	"var_name6": "AWS_Accesskey",
+      "var_Description6": "AWS Accesskey",
+      "var_Encrypted6": 0,
+      "var_Type6": "string",
+	  
+	"var_name7": "AWS_Profilename",
+      "var_Description7": "AWS Profilename",
+      "var_Encrypted7": 0,
+      "var_Type7": "string",
+	
+	"var_name8": "AWS_Secretkey",
+      "var_Description8": "AWS Secretkey",
+      "var_Encrypted8": 0,
+      "var_Type8": "string",
+	
   },
     "resources": [
         {
@@ -163,21 +245,126 @@
                         }
                     }
                 },
-				                                           {
-      "name": "[variables('var_name')]",
-      "type": "variables",
-      "apiVersion": "2015-01-01-preview",
-      "tags": { },
-      "dependsOn": [
-             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-      ],
-      "properties": {
-        "description": "[variables('var_Description')]",
-        "isEncrypted": "[variables('var_Encrypted')]",
-        "type": "[variables('var_Type')]",
-        "value": "[parameters('OMS_PrimaryKey')]"
-      }
-    }
+				   {
+					"name": "[variables('var_name1')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description1')]",
+						"isEncrypted": "[variables('var_Encrypted1')]",
+						"type": "[variables('var_Type1')]",
+						"value": "[parameters('OMS_PrimaryKey')]"
+									}
+					},
+					{
+					"name": "[variables('var_name2')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description2')]",
+						"isEncrypted": "[variables('var_Encrypted2')]",
+						"type": "[variables('var_Type2')]",
+						"value": "[parameters('OMS_WorkspaceID')]"
+									}
+					},
+					{
+					"name": "[variables('var_name3')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description3')]",
+						"isEncrypted": "[variables('var_Encrypted3')]",
+						"type": "[variables('var_Type3')]",
+						"value": "[parameters('OMS_WorkspaceName')]"
+									}
+					},
+					{
+					"name": "[variables('var_name4')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description4')]",
+						"isEncrypted": "[variables('var_Encrypted4')]",
+						"type": "[variables('var_Type4')]",
+						"value": "[parameters('OMS_ResourceGroup')]"
+									}
+					},
+					{
+					"name": "[variables('var_name5')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description5')]",
+						"isEncrypted": "[variables('var_Encrypted5')]",
+						"type": "[variables('var_Type5')]",
+						"value": "[parameters('AWS_Region')]"
+									}
+					},
+					{
+					"name": "[variables('var_name6')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description6')]",
+						"isEncrypted": "[variables('var_Encrypted6')]",
+						"type": "[variables('var_Type6')]",
+						"value": "[parameters('AWS_Accesskey')]"
+									}
+					},
+					{
+					"name": "[variables('var_name7')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description7')]",
+						"isEncrypted": "[variables('var_Encrypted7')]",
+						"type": "[variables('var_Type7')]",
+						"value": "[parameters('AWS_Profilename')]"
+									}
+					},
+					{
+					"name": "[variables('var_name8')]",
+					"type": "variables",
+					"apiVersion": "2015-01-01-preview",
+					"tags": { },
+					"dependsOn": [
+					"[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+									],
+					"properties": {
+						"description": "[variables('var_Description8')]",
+						"isEncrypted": "[variables('var_Encrypted8')]",
+						"type": "[variables('var_Type8')]",
+						"value": "[parameters('AWS_Secretkey')]"
+									}
+					}
             ]
         }
     ],
