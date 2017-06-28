@@ -39,7 +39,11 @@
     "runbookDescription3": "My omsinput_cloudtrail Runbook",
     "runbookName4": "omsinput_rds",
     "scriptUri4": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_rds.ps1",
-    "runbookDescription4": "My omsinput_rds Runbook"
+    "runbookDescription4": "My omsinput_rds Runbook",
+	"var_name" : "[parameters('OMS_Primarykey')]",
+	"var_Encrypted": 0,
+	"var_Type" : "string"
+	
 
   },
     "resources": [
@@ -156,7 +160,7 @@
                         }
                     }
                 },
-				                {
+				                           {
       "name": "OMS_Primarykey",
       "type": "variables",
       "apiVersion": "2015-01-01-preview",
@@ -165,10 +169,10 @@
              "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
       ],
       "properties": {
-        "description": "Testing",
-        "isEncrypted": 0,
-        "type": "string",
-        "value": "[parameter('OMS_Primarykey')]"
+        "description": "",
+        "isEncrypted": "[variables('var_Encrypted')]",
+        "type": "[variables('var_Type')]",
+        "value": "[variables('var_name')]"
       }
     }
             ]
