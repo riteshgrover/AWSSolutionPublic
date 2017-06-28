@@ -44,7 +44,7 @@
 	"var_name1": "test",
       "var_Description1": "OMS Primary Key Value",
       "var_Encrypted1": 0,
-      "var_Type1": "string",
+      "var_Type1": "string"
 	
 
 	
