@@ -41,7 +41,7 @@
     "scriptUri4": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_rds.ps1",
     "runbookDescription4": "My omsinput_rds Runbook",
 
-	"var_name1": "OMS_PrimaryKey",
+	"var_name1": "test",
       "var_Description1": "OMS Primary Key Value",
       "var_Encrypted1": 0,
       "var_Type1": "string",
