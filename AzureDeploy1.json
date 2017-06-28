@@ -14,6 +14,13 @@
             "metadata": {
                 "description": "DefaultAzureCredential is the name of the Automation credential used in this runbook. This credential allows you to authenticate to Azure. "
             }
+        },
+				"OMS_PrimaryKey": {
+            "type": "string",
+            "defaultValue": " ",
+            "metadata": {
+                "description": "OMS Workspace Primary Key "
+            }
         }
     },
   "variables": {
