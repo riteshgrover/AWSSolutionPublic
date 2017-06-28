@@ -14,13 +14,6 @@
             "metadata": {
                 "description": "DefaultAzureCredential is the name of the Automation credential used in this runbook. This credential allows you to authenticate to Azure. "
             }
-        },
-		"OMS_Primarykey": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-                "description": "OMS Workspace Primary Key "
-            }
         }
     },
   "variables": {
@@ -40,9 +33,12 @@
     "runbookName4": "omsinput_rds",
     "scriptUri4": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_rds.ps1",
     "runbookDescription4": "My omsinput_rds Runbook",
-	"var_name" : "[parameters('OMS_Primarykey')]",
-	"var_Encrypted": 0,
-	"var_Type" : "string"
+
+	"var_name": "try",
+      "var_Description": "Sample variable",
+      "var_Encrypted": 0,
+      "var_Type": "string",
+      "var_Value": "'This is my string value.'"
 	
 
   },
@@ -160,8 +156,8 @@
                         }
                     }
                 },
-				                           {
-      "name": "OMS_Primarykey",
+				                                           {
+      "name": "[variables('var_name')]",
       "type": "variables",
       "apiVersion": "2015-01-01-preview",
       "tags": { },
@@ -169,10 +165,10 @@
              "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
       ],
       "properties": {
-        "description": "",
+        "description": "[variables('var_Description')]",
         "isEncrypted": "[variables('var_Encrypted')]",
         "type": "[variables('var_Type')]",
-        "value": "[variables('var_name')]"
+        "value": "[variables('var_Value')]"
       }
     }
             ]
