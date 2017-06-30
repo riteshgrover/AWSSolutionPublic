@@ -100,23 +100,23 @@
     },
     "CLOUDTRAIL": {
       "type": "string",
-      "defaultValue": "True",
+      "defaultValue": "'True'",
       "metadata": {
-        "description": "boolean for cloudtrail data"
+        "description": "Boolean for cloudtrail data"
       }
     },
     "EC2": {
       "type": "string",
-      "defaultValue": "True",
+      "defaultValue": "'True'",
       "metadata": {
-        "description": "boolean for ec2 data"
+        "description": "Boolean for ec2 data"
       }
     },
     "RDS": {
       "type": "string",
-      "defaultValue": "True",
+      "defaultValue": "'True'",
       "metadata": {
-        "description": "boolean for rds data"
+        "description": "Boolean for rds data"
       }
     },
     "scheduleStartTime": {
@@ -241,7 +241,7 @@
     "var_Encrypted16": 0,
     "var_Type16": "string",
     "var_Value16": "[parameters('OMS_WorkspaceID')]",
-    "scheduleName": "AWS-OMS-Schedule",
+    "scheduleName": "Schedule Start Time",
     "scheduleDescription": "Schedule",
     "IsEnabled": "true",
     "Interval": "1",
