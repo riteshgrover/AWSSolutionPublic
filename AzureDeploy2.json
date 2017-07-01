@@ -1,0 +1,926 @@
+{
+  "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01-preview#",
+  "contentVersion": "1.0",
+  "parameters": {
+    "accountName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the Azure Automation account to deploy to."
+      }
+    },
+    "subscriptionId": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "OMS_PrimaryKey": {
+      "type": "string",
+      "metadata": {
+        "description": "OMS Workspace Primary Key "
+      }
+    },
+    "OMS_WorkspaceID": {
+      "type": "string",
+      "metadata": {
+        "description": "OMS WorkspaceID "
+      }
+    },
+    "OMS_WorkspaceName": {
+      "type": "string",
+      "metadata": {
+        "description": "OMS Workspace Name"
+      }
+    },
+    "OMS_ResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "OMS Resource Group Name"
+      }
+    },
+    "AWS_Region": {
+      "type": "string",
+      "metadata": {
+        "description": "AWS Region"
+      }
+    },
+    "AWS_Accesskey": {
+      "type": "string",
+      "metadata": {
+        "description": "AWS AccessKey"
+      }
+    },
+    "AWS_Profilename": {
+      "type": "string",
+      "metadata": {
+        "description": "AWS Profilename"
+      }
+    },
+    "AWS_Secretkey": {
+      "type": "string",
+      "metadata": {
+        "description": "AWS secretkey"
+      }
+    },
+    "aws_dim_cloudtrail": {
+      "type": "string",
+      "defaultValue": " ",
+      "metadata": {
+        "description": "AWS cloudtrail dimensions"
+      }
+    },
+    "aws_dim_rds": {
+      "type": "string",
+      "defaultValue": " ",
+      "metadata": {
+        "description": "AWS rds dimensions"
+      }
+    },
+    "aws_dimensionperf": {
+      "type": "string",
+      "defaultValue": " ",
+      "metadata": {
+        "description": "AWS performance dimensions"
+      }
+    },
+    "aws_metricname": {
+      "type": "string",
+      "defaultValue": " ",
+      "metadata": {
+        "description": "AWS performance metrics"
+      }
+    },
+    "aws_metricscloudtrail": {
+      "type": "string",
+      "defaultValue": " ",
+      "metadata": {
+        "description": "AWS cloudtrail metrics"
+      }
+    },
+    "aws_metricsrds": {
+      "type": "string",
+      "defaultValue": " ",
+      "metadata": {
+        "description": "AWS rds metrics"
+      }
+    },
+    "CLOUDTRAIL": {
+      "type": "string",
+      "defaultValue": "'True'",
+      "metadata": {
+        "description": "Boolean for cloudtrail data"
+      }
+    },
+    "EC2": {
+      "type": "string",
+      "defaultValue": "'True'",
+      "metadata": {
+        "description": "Boolean for ec2 data"
+      }
+    },
+    "RDS": {
+      "type": "string",
+      "defaultValue": "'True'",
+      "metadata": {
+        "description": "Boolean for rds data"
+      }
+    },
+    "scheduleStartTime": {
+      "type": "string",
+      "metadata": {
+        "Description": "Start time for shedule."
+      }
+    },
+    "scheduleTimeZone": {
+      "type": "string",
+      "metadata": {
+        "Description": "Time zone for schedule."
+      }
+    },
+    "credentialName": {
+      "type": "string",
+      "defaultValue": "DefaultAzureCredential",
+      "metadata": {
+        "description": "DefaultAzureCredential is the name of the Automation credential used in this runbook. This credential allows you to authenticate to Azure. "
+      }
+    }
+  },
+  "variables": {
+    "runbookName": "aws_control",
+    "scriptUri": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/aws_control.ps1",
+    "runbookDescription": "Control Module Runbook",
+    "sku": "Free",
+    "runbookName1": "aws_export",
+    "scriptUri1": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/aws_export.ps1",
+    "runbookDescription1": "AWS Export Runbook",
+    "runbookName2": "omsinput",
+    "scriptUri2": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput.ps1",
+    "runbookDescription2": "OMS EC2 Import Runbook",
+    "runbookName3": "omsinput_cloudtrail",
+    "scriptUri3": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_cloudtrail.ps1",
+    "runbookDescription3": "Cloudtrail Import Runbook",
+    "runbookName4": "omsinput_rds",
+    "scriptUri4": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_rds.ps1",
+    "runbookDescription4": "RDS Import Runbook",
+    "var_name": "aws_access",
+    "var_Description": "AWS Access Key",
+    "var_Encrypted": 0,
+    "var_Type": "string",
+    "var_Value": "[parameters('AWS_Accesskey')]",
+    "var_name1": "aws_dim_cloudtrail",
+    "var_Description1": "Dim Cloudtrail Variable",
+    "var_Encrypted1": 0,
+    "var_Type1": "string",
+    "var_Value1": "[parameters('aws_dim_cloudtrail')]",
+    "var_name2": "aws_dim_rds",
+    "var_Description2": "RDS Variable",
+    "var_Encrypted2": 0,
+    "var_Type2": "string",
+    "var_Value2": "[parameters('aws_dim_rds')]",
+    "var_name3": "aws_dimensionperf",
+    "var_Description3": "AWS Perf Variable",
+    "var_Encrypted3": 0,
+    "var_Type3": "string",
+    "var_Value3": "[parameters('aws_dimensionperf')]",
+    "var_name4": "aws_metricname",
+    "var_Description4": "AWS Metric EC2",
+    "var_Encrypted4": 0,
+    "var_Type4": "string",
+    "var_Value4": "[parameters('aws_metricname')]",
+    "var_name5": "aws_metricscloudtrail",
+    "var_Description5": "AWS Metrics Cloudtrail",
+    "var_Encrypted5": 0,
+    "var_Type5": "string",
+    "var_Value5": "[parameters('aws_metricscloudtrail')]",
+    "var_name6": "aws_metricsrds",
+    "var_Description6": "AWS Metrics RDS",
+    "var_Encrypted6": 0,
+    "var_Type6": "string",
+    "var_Value6": "[parameters('aws_metricsrds')]",
+    "var_name7": "aws_profilename",
+    "var_Description7": "AWS Profile Variable",
+    "var_Encrypted7": 0,
+    "var_Type7": "string",
+    "var_Value7": "[parameters('AWS_Profilename')]",
+    "var_name8": "aws_region",
+    "var_Description8": "AWS Region Variable",
+    "var_Encrypted8": 0,
+    "var_Type8": "string",
+    "var_Value8": "[parameters('AWS_Region')]",
+    "var_name9": "aws_secretkey",
+    "var_Description9": "AWS Secret Key",
+    "var_Encrypted9": 0,
+    "var_Type9": "string",
+    "var_Value9": "[parameters('AWS_Secretkey')]",
+    "var_name10": "CLOUDTRAIL",
+    "var_Description10": "Cloudtrail Flag",
+    "var_Encrypted10": 0,
+    "var_Type10": "string",
+    "var_Value10": "[parameters('CLOUDTRAIL')]",
+    "var_name11": "EC2",
+    "var_Description11": "EC2 Flag",
+    "var_Encrypted11": 0,
+    "var_Type11": "string",
+    "var_Value11": "[parameters('EC2')]",
+    "var_name12": "OMS_primarykey",
+    "var_Description12": "OMS PrimaryKey Name",
+    "var_Encrypted12": 0,
+    "var_Type12": "string",
+    "var_Value12": "[parameters('OMS_PrimaryKey')]",
+    "var_name13": "OMSrgname",
+    "var_Description13": "OMS Resource Group",
+    "var_Encrypted13": 0,
+    "var_Type13": "string",
+    "var_Value13": "[parameters('OMS_ResourceGroup')]",
+    "var_name14": "OMSwkspname",
+    "var_Description14": "OMS Workspace Name",
+    "var_Encrypted14": 0,
+    "var_Type14": "string",
+    "var_Value14": "[parameters('OMS_WorkspaceName')]",
+    "var_name15": "RDS",
+    "var_Description15": "RDS Flag",
+    "var_Encrypted15": 0,
+    "var_Type15": "string",
+    "var_Value15": "[parameters('RDS')]",
+    "var_name16": "OMS_workspaceid",
+    "var_Description16": "OMS Workspace ID",
+    "var_Encrypted16": 0,
+    "var_Type16": "string",
+    "var_Value16": "[parameters('OMS_WorkspaceID')]",
+    "scheduleName": "Schedule Start Time",
+    "scheduleDescription": "Schedule",
+    "IsEnabled": "true",
+    "Interval": "1",
+    "Frequency": "hour",
+    "StartTime": "[parameters('scheduleStartTime')]",
+    "TimeZone": "[parameters('scheduleTimeZone')]",
+    
+    "SolutionVersion": "1.0",
+    "SolutionPublisher": "Contoso",
+    "SolutionName": "AWS OMS Solution",
+    "LogAnalyticsApiVersion": "2015-11-01-preview",
+    "ViewAuthor": "user@contoso.com",
+    "ViewDescription": "This is a AWS OMS Solution.",
+    "ViewName": "AWS View"
+
+  },
+  "resources": [
+    {
+      "name": "[parameters('accountName')]",
+      "type": "Microsoft.Automation/automationAccounts",
+      "apiVersion": "2015-10-31",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [],
+      "tags": {},
+      "properties": {
+        "sku": {
+          "name": "[variables('sku')]"
+        }
+      },
+      "resources": [
+        {
+          "name": "[variables('runbookName')]",
+          "type": "runbooks",
+          "apiVersion": "2015-10-31",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "tags": {},
+          "properties": {
+            "runbookType": "Script",
+            "logProgress": "false",
+            "logVerbose": "false",
+            "description": "[variables('runbookDescription')]",
+            "publishContentLink": {
+              "uri": "[variables('scriptUri')]",
+              "version": "1.0.0.0"
+            }
+          }
+        },
+        {
+          "name": "[variables('runbookName1')]",
+          "type": "runbooks",
+          "apiVersion": "2015-10-31",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "tags": {},
+          "properties": {
+            "runbookType": "Script",
+            "logProgress": "false",
+            "logVerbose": "false",
+            "description": "[variables('runbookDescription1')]",
+            "publishContentLink": {
+              "uri": "[variables('scriptUri1')]",
+              "version": "1.0.0.0"
+            }
+          }
+        },
+        {
+          "name": "[variables('runbookName2')]",
+          "type": "runbooks",
+          "apiVersion": "2015-10-31",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "tags": {},
+          "properties": {
+            "runbookType": "Script",
+            "logProgress": "false",
+            "logVerbose": "false",
+            "description": "[variables('runbookDescription2')]",
+            "publishContentLink": {
+              "uri": "[variables('scriptUri2')]",
+              "version": "1.0.0.0"
+            }
+          }
+        },
+        {
+          "name": "[variables('runbookName3')]",
+          "type": "runbooks",
+          "apiVersion": "2015-10-31",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "tags": {},
+          "properties": {
+            "runbookType": "Script",
+            "logProgress": "false",
+            "logVerbose": "false",
+            "description": "[variables('runbookDescription3')]",
+            "publishContentLink": {
+              "uri": "[variables('scriptUri3')]",
+              "version": "1.0.0.0"
+            }
+          }
+        },
+        {
+          "name": "[variables('runbookName4')]",
+          "type": "runbooks",
+          "apiVersion": "2015-10-31",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "tags": {},
+          "properties": {
+            "runbookType": "Script",
+            "logProgress": "false",
+            "logVerbose": "false",
+            "description": "[variables('runbookDescription4')]",
+            "publishContentLink": {
+              "uri": "[variables('scriptUri4')]",
+              "version": "1.0.0.0"
+            }
+          }
+        },
+        {
+          "name": "[variables('var_name')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description')]",
+            "isEncrypted": "[variables('var_Encrypted')]",
+            "type": "[variables('var_Type')]",
+            "value": "[variables('var_Value')]"
+          }
+        },
+        {
+          "name": "[variables('var_name1')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description1')]",
+            "isEncrypted": "[variables('var_Encrypted1')]",
+            "type": "[variables('var_Type1')]",
+            "value": "[variables('var_Value1')]"
+          }
+        },
+        {
+          "name": "[variables('var_name2')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description2')]",
+            "isEncrypted": "[variables('var_Encrypted2')]",
+            "type": "[variables('var_Type2')]",
+            "value": "[variables('var_Value2')]"
+          }
+        },
+        {
+          "name": "[variables('var_name3')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description3')]",
+            "isEncrypted": "[variables('var_Encrypted3')]",
+            "type": "[variables('var_Type3')]",
+            "value": "[variables('var_Value3')]"
+          }
+        },
+        {
+          "name": "[variables('var_name4')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description4')]",
+            "isEncrypted": "[variables('var_Encrypted4')]",
+            "type": "[variables('var_Type4')]",
+            "value": "[variables('var_Value4')]"
+          }
+        },
+        {
+          "name": "[variables('var_name5')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description5')]",
+            "isEncrypted": "[variables('var_Encrypted5')]",
+            "type": "[variables('var_Type5')]",
+            "value": "[variables('var_Value5')]"
+          }
+        },
+        {
+          "name": "[variables('var_name6')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description6')]",
+            "isEncrypted": "[variables('var_Encrypted6')]",
+            "type": "[variables('var_Type6')]",
+            "value": "[variables('var_Value6')]"
+          }
+        },
+        {
+          "name": "[variables('var_name7')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description7')]",
+            "isEncrypted": "[variables('var_Encrypted7')]",
+            "type": "[variables('var_Type7')]",
+            "value": "[variables('var_Value7')]"
+          }
+        },
+        {
+          "name": "[variables('var_name8')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description8')]",
+            "isEncrypted": "[variables('var_Encrypted8')]",
+            "type": "[variables('var_Type8')]",
+            "value": "[variables('var_Value8')]"
+          }
+        },
+        {
+          "name": "[variables('var_name9')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description9')]",
+            "isEncrypted": "[variables('var_Encrypted9')]",
+            "type": "[variables('var_Type9')]",
+            "value": "[variables('var_Value9')]"
+          }
+        },
+        {
+          "name": "[variables('var_name10')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description10')]",
+            "isEncrypted": "[variables('var_Encrypted10')]",
+            "type": "[variables('var_Type10')]",
+            "value": "[variables('var_Value10')]"
+          }
+        },
+        {
+          "name": "[variables('var_name11')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description11')]",
+            "isEncrypted": "[variables('var_Encrypted11')]",
+            "type": "[variables('var_Type11')]",
+            "value": "[variables('var_Value11')]"
+          }
+        },
+        {
+          "name": "[variables('var_name12')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description12')]",
+            "isEncrypted": "[variables('var_Encrypted12')]",
+            "type": "[variables('var_Type12')]",
+            "value": "[variables('var_Value12')]"
+          }
+        },
+        {
+          "name": "[variables('var_name13')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description13')]",
+            "isEncrypted": "[variables('var_Encrypted13')]",
+            "type": "[variables('var_Type13')]",
+            "value": "[variables('var_Value13')]"
+          }
+        },
+        {
+          "name": "[variables('var_name14')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description14')]",
+            "isEncrypted": "[variables('var_Encrypted14')]",
+            "type": "[variables('var_Type14')]",
+            "value": "[variables('var_Value14')]"
+          }
+        },
+        {
+          "name": "[variables('var_name15')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description15')]",
+            "isEncrypted": "[variables('var_Encrypted15')]",
+            "type": "[variables('var_Type15')]",
+            "value": "[variables('var_Value15')]"
+          }
+        },
+        {
+          "name": "[variables('var_name16')]",
+          "type": "variables",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('var_Description16')]",
+            "isEncrypted": "[variables('var_Encrypted16')]",
+            "type": "[variables('var_Type16')]",
+            "value": "[variables('var_Value16')]"
+          }
+        },
+        {
+          "name": "[variables('scheduleName')]",
+          "type": "schedules",
+          "apiVersion": "2015-10-31",
+          "tags": {},
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ],
+          "properties": {
+            "description": "[variables('scheduleDescription')]",
+            "startTime": "[variables('startTime')]",
+            "timeZone": "[variables('TimeZone')]",
+            "isEnabled": "[variables('IsEnabled')]",
+            "interval": "[variables('Interval')]",
+            "frequency": "[variables('Frequency')]"
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "2015-11-01-preview",
+      "name": "[parameters('OMS_WorkspaceName')]",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "location": "[resourceGroup().location]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'))]",
+      "resources": [
+        {
+          "apiVersion": "2015-11-01-preview",
+          "name": "My Demo Solution",
+          "type": "views",
+          "location": "[resourceGroup().location]",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/My Demo Solution')]",
+          "dependson": [
+            "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'))]"
+          ],
+          "properties": {
+            "Id": "My Demo Solution",
+            "Name": "My Demo Solution",
+            "Author": "rgrover@microsoft.com",
+            "Source": "Local",
+            "Version": 1,
+            "Dashboard": [
+              {
+                "Id": "InformationBlade",
+                "Type": "Blade",
+                "Version": 0,
+                "Configuration": {
+                  "General": {
+                    "Title": "",
+                    "NewGroup": false,
+                    "Color": "#0072c6"
+                  },
+                  "Header": {
+                    "Image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAztJREFUeNrUmktoE1EUhqexKj4zJWoaqIpVaVGxKr6ogsaNbhS0YKkKFeKmriwFEaXYnY+FYjeCbmtRRBeuXIlLMe1CXGlduBOt0rS1FaF2/A+ciWMy0yT3njvN/PBtMuHc8899zJ1zp8ZxHEtAKXAE7AdNYBOwGVKO+QQ+gDfgFfii23CNhoHV4CyzWzHGEBgEA2BUKQIZqJAG0A+mHTn9AvfB2krzqeTPi8AVMOWYE92UPrBY2kAzeOeEp/fcZsncYmWMsjaQBdut8LSN22zTnQMXwYwzf5rhHJSGUJdTPeoKyjNoGT0JnoIFCt1/GXwOuNYIbirE/APawbNyhlATmNS4W4fm6NW0Rlxa/baWmsQLwROwXGMC2orXSmkpeMw55lVooAe0aK4gcUMG3NWpJ8hAA+gVWAJtRXPlqpdzLTJwlbvJpAFbID7leK3QwCpwXughFDdsgNTJOecN0A9LhIKbHkIW59rpNdAhuA2wQ+gB0hnXQBLsiqCBnaCeDKTpxUYwcDwkA5TzYTLQKryTDGMOuDoQ44eDFcEhRNpCBtYJB42HaGC9O4klVRuwl1opPNdIa2KaG7dK7nSdgXZWxCwzskOYwPmtxISBuPEQxj9pnAx8NRC4LiQDo2RgJMI98DHGtUpppbgXvNSbMEAv9af5NTKKaicDtK/+ZmCNNi0qpyRpCH3nKnHUNOROYtIj4eDTXP9JMzfAlHAbg966UEKwXE71m70+NSH67bdgFTvhrQv9AA+E7sw98Nbnd/rtjlAbDznn/ypzKc2KnKuDc1TmWgXiT3KuRZU5Oq+6LrQ6BGlWIH6f5TlbK9zM9YNhzQaOKV4rR8M8RD23q7ibG0FOo4snwA6fuC18TVWU08Zyy+snwHNLrbxu8ZJ5F7zkIXUUdNP+XTEelddPgRfFAzZ4wmXAbBUcblAOF1QP+TJVcMSU0T2lPA7G5iH5HLctcsy6AWRDTD7LbYoedNeCS2DcYOK0SnVzW+In9S5JcEtzSfRL/DbHrigfnY896C2LPvQ4B/b4PBRLiZ7KdJg9wLvhMaUCqdDnNgkqtIJ9oBlspqITWMYvSj/5pWnE+ve5zev8hkxDfwUYAP0NkvYTPlJVAAAAAElFTkSuQmCC",
+                    "Label": "Information Part",
+                    "Link": {
+                      "Label": "More info",
+                      "Url": "https://azure.microsoft.com/en-us/documentation/articles/log-analytics-view-designer-parts/#information-part"
+                    }
+                  },
+                  "List": [
+                    {
+                      "Title": "Let's make views!",
+                      "Content": "## Headers are easy\n1. Make lists\n 1. And sub-lists\n\nEmbolden **important things**,\n*Italicize* them,\nOr __*both*__\n\n#### Code is cool\n\n``* | measure count() by Type``\n\n#### Embed [Links](https://microsoft.com \"Links\") or Images\n\n![MS Logo](https://assets.onestore.ms/cdnfiles/onestorerolling-1607-15000/shell/v3/images/logo/microsoft.png \"Microsoft\")"
+                    }
+                  ]
+                }
+              },
+              {
+                "Id": "SingleQueryDonutBuilderBladeV1",
+                "Type": "Blade",
+                "Version": 0,
+                "Configuration": {
+                  "General": {
+                    "title": "Distribution by Computer",
+                    "newGroup": false,
+                    "icon": "",
+                    "useIcon": false
+                  },
+                  "Header": {
+                    "Title": "--",
+                    "Subtitle": ""
+                  },
+                  "Donut": {
+                    "Query": "* | measure count() by Type",
+                    "CenterLegend": {
+                      "Text": "Total",
+                      "Operation": "Sum",
+                      "ArcsToSelect": []
+                    },
+                    "Options": {
+                      "colors": [
+                        "#00188f",
+                        "#0072c6",
+                        "#00bcf2"
+                      ],
+                      "valueColorMapping": []
+                    }
+                  },
+                  "List": {
+                    "Query": "* | measure Count() by Type",
+                    "HideGraph": false,
+                    "enableSparklines": false,
+                    "operation": "Summary",
+                    "ColumnsTitle": {
+                      "Name": "Computer",
+                      "Value": "Count"
+                    },
+                    "Color": "#0072c6",
+                    "thresholds": {
+                      "isEnabled": false,
+                      "values": [
+                        {
+                          "name": "Normal",
+                          "threshold": "Default",
+                          "color": "#009e49",
+                          "isDefault": true
+                        },
+                        {
+                          "name": "Warning",
+                          "threshold": "60",
+                          "color": "#fcd116",
+                          "isDefault": false
+                        },
+                        {
+                          "name": "Error",
+                          "threshold": "90",
+                          "color": "#ba141a",
+                          "isDefault": false
+                        }
+                      ]
+                    },
+                    "NameDSVSeparator": "",
+                    "NavigationQuery": "{selected item}"
+                  }
+                }
+              },
+              {
+                "Id": "TwoTrendsAndListBuilderBlade",
+                "Type": "Blade",
+                "Version": 0,
+                "Configuration": {
+                  "General": {
+                    "title": "Distribution by Computer",
+                    "newGroup": false,
+                    "icon": "",
+                    "useIcon": false
+                  },
+                  "Trend1": {
+                    "Legend": "All Data",
+                    "LegendColor": "#00188f",
+                    "ChartQuery": "*",
+                    "Calculation": {
+                      "Operation": "Sum"
+                    }
+                  },
+                  "Trend2": {
+                    "Legend": "All Events",
+                    "LegendColor": "#0072c6",
+                    "ChartQuery": "Type:Event",
+                    "Calculation": {
+                      "Operation": "Sum"
+                    }
+                  },
+                  "List": {
+                    "Query": "* | measure count() by Computer",
+                    "HideGraph": false,
+                    "enableSparklines": false,
+                    "operation": "Summary",
+                    "ColumnsTitle": {
+                      "Name": "Computer",
+                      "Value": "Count"
+                    },
+                    "Color": "#0072c6",
+                    "thresholds": {
+                      "isEnabled": false,
+                      "values": [
+                        {
+                          "name": "Normal",
+                          "threshold": "Default",
+                          "color": "#009e49",
+                          "isDefault": true
+                        },
+                        {
+                          "name": "Warning",
+                          "threshold": "60",
+                          "color": "#fcd116",
+                          "isDefault": false
+                        },
+                        {
+                          "name": "Error",
+                          "threshold": "90",
+                          "color": "#ba141a",
+                          "isDefault": false
+                        }
+                      ]
+                    },
+                    "NameDSVSeparator": "",
+                    "NavigationQuery": "{selected item}"
+                  }
+                }
+              },
+              {
+                "Id": "LineChartBuilderBlade",
+                "Type": "Blade",
+                "Version": 0,
+                "Configuration": {
+                  "General": {
+                    "title": "Data type distribution",
+                    "newGroup": false,
+                    "icon": "",
+                    "useIcon": false
+                  },
+                  "Header": {
+                    "Title": "Data types over time",
+                    "Subtitle": ""
+                  },
+                  "LineChart": {
+                    "Query": "* | measure count() by Type | display linechart",
+                    "yAxis": {
+                      "isLogarithmic": false,
+                      "units": {
+                        "baseUnitType": "",
+                        "baseUnit": "",
+                        "displayUnit": ""
+                      },
+                      "customLabel": ""
+                    }
+                  },
+                  "List": {
+                    "Query": "* | measure count() by Type",
+                    "HideGraph": false,
+                    "enableSparklines": false,
+                    "operation": "Summary",
+                    "ColumnsTitle": {
+                      "Name": "Type",
+                      "Value": "Count"
+                    },
+                    "Color": "#0072c6",
+                    "thresholds": {
+                      "isEnabled": false,
+                      "values": [
+                        {
+                          "name": "Normal",
+                          "threshold": "Default",
+                          "color": "#009e49",
+                          "isDefault": true
+                        },
+                        {
+                          "name": "Warning",
+                          "threshold": "60",
+                          "color": "#fcd116",
+                          "isDefault": false
+                        },
+                        {
+                          "name": "Error",
+                          "threshold": "90",
+                          "color": "#ba141a",
+                          "isDefault": false
+                        }
+                      ]
+                    },
+                    "NameDSVSeparator": "",
+                    "NavigationQuery": "{selected item}"
+                  }
+                }
+              }
+            ],
+            "OverviewTile": {
+              "Id": "SingleNumberBuilderTile",
+              "Type": "OverviewTile",
+              "Version": 0,
+              "Configuration": {
+                "Tile": {
+                  "Legend": "Types of data",
+                  "Query": "* | measure count() by Type"
+                },
+                "Advanced": {
+                  "DataFlowVerification": {
+                    "Enabled": false,
+                    "Query": "*",
+                    "Message": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": {}
+}
