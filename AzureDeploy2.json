@@ -252,7 +252,6 @@
     "Frequency": "hour",
     "StartTime": "[parameters('scheduleStartTime')]",
     "TimeZone": "[parameters('scheduleTimeZone')]",
-    "AAResourceGroup" :  "[Resourcegroup()]",
     
     "SolutionVersion": "1.0",
     "SolutionPublisher": "Contoso",
@@ -656,16 +655,16 @@
       "name": "[variables('var_Value14')]",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', variables('AAResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
           "name": "My Demo Solution",
           "type": "views",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', variables('AAResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'),'/views/My Demo Solution')]",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'),'/views/My Demo Solution')]",
           "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', variables('AAResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]"
+            "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]"
           ],
           "properties": {
             "Id": "My Demo Solution",
