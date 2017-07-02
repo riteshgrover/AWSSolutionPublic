@@ -686,7 +686,7 @@
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
-          "name": "My Demo Solution",
+          "name": "Contoso View",
           "type": "views",
           "location": "[resourceGroup().location]",
           "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]",
@@ -694,8 +694,8 @@
             "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]"
           ],
           "properties": {
-            "Id": "My Demo Solution",
-            "Name": "My Demo Solution",
+            "Id": "Contoso View",
+            "Name": "Contoso View",
             "Author": "rgrover@microsoft.com",
             "Source": "Local",
             "Version": 1,
