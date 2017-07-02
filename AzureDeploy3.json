@@ -659,14 +659,14 @@
       "type": "Microsoft.OperationsManagement/solutions",
       "apiVersion": "[variables('LogAnalyticsApiVersion')]",
       "dependsOn": [
-        "[concat('Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'), '/views/', variables('ViewName'))]"
+        "[concat('Microsoft.OperationalInsights/workspaces/', 'omsaws5', '/views/', variables('ViewName'))]"
       ],
       "properties": {
-        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'))]",
+        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5''))]",
         "referencedResources": [
         ],
         "containedResources": [
-          "[concat('Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'), '/views/', variables('ViewName'))]"
+          "[concat('Microsoft.OperationalInsights/workspaces/', 'omsaws5', '/views/', variables('ViewName'))]"
         ]
       },
       "plan": {
