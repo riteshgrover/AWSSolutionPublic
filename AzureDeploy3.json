@@ -659,14 +659,14 @@
       "type": "Microsoft.OperationsManagement/solutions",
       "apiVersion": "[variables('LogAnalyticsApiVersion')]",
       "dependsOn": [
-        "[concat('Microsoft.OperationalInsights/workspaces/', 'omsaws5', '/views/', variables('ViewName'))]"
+        "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]"
       ],
       "properties": {
         "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/omsaws5')]",
         "referencedResources": [
         ],
         "containedResources": [
-          "[concat('Microsoft.OperationalInsights/workspaces/', 'omsaws5', '/views/', variables('ViewName'))]"
+          "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]"
         ]
       },
       "plan": {
