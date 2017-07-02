@@ -36,6 +36,12 @@
         "description": "OMS Resource Group Name"
       }
     },
+    "OMS_ResourceGroupLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "OMS Resource Group Location"
+      }
+    },
     "AWS_Region": {
       "type": "string",
       "metadata": {
@@ -267,7 +273,7 @@
       "name": "[parameters('accountName')]",
       "type": "Microsoft.Automation/automationAccounts",
       "apiVersion": "2015-10-31",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('OMS_ResourceGroupLocation')]",
       "dependsOn": [],
       "tags": {},
       "properties": {
@@ -280,7 +286,7 @@
           "name": "[variables('runbookName')]",
           "type": "runbooks",
           "apiVersion": "2015-10-31",
-          "location": "[resourceGroup().location]",
+          "location": "[parameters('OMS_ResourceGroupLocation')]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
           ],
