@@ -649,16 +649,16 @@
       "name": "[variables('var_Value14')]",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
           "name": "My Demo Solution",
           "type": "views",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'),'/views/My Demo Solution')]",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'),'/views/My Demo Solution')]",
           "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]"
+            "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]"
           ],
           "properties": {
             "Id": "My Demo Solution",
