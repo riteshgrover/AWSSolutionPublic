@@ -689,7 +689,7 @@
           "name": "My Demo Solution",
           "type": "views",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/My Demo Solution')]",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]",
           "dependson": [
             "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]"
           ],
