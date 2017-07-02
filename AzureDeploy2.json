@@ -273,7 +273,7 @@
       "name": "[parameters('accountName')]",
       "type": "Microsoft.Automation/automationAccounts",
       "apiVersion": "2015-10-31",
-      "location": "[parameters('OMS_ResourceGroupLocation')]",
+      "location": "[parameters('OMS_ResourceGroup')]",
       "dependsOn": [],
       "tags": {},
       "properties": {
@@ -286,7 +286,7 @@
           "name": "[variables('runbookName')]",
           "type": "runbooks",
           "apiVersion": "2015-10-31",
-          "location": "[parameters('OMS_ResourceGroupLocation')]",
+          "location": "[parameters('OMS_ResourceGroup')]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
           ],
@@ -660,14 +660,14 @@
       "apiVersion": "2015-11-01-preview",
       "name": "[variables('var_Value14')]",
       "type": "Microsoft.OperationalInsights/workspaces",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('OMS_ResourceGroupLocation')]",
       "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
           "name": "My Demo Solution",
           "type": "views",
-          "location": "[resourceGroup().location]",
+          "location": "[parameters('OMS_ResourceGroupLocation')]",
           "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'),'/views/My Demo Solution')]",
           "dependson": [
             "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]"
