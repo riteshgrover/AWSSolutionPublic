@@ -662,7 +662,7 @@
         "[concat('Microsoft.OperationalInsights/workspaces/', 'omsaws5', '/views/', variables('ViewName'))]"
       ],
       "properties": {
-        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5''))]",
+        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/omsaws5')]",
         "referencedResources": [
         ],
         "containedResources": [
