@@ -653,7 +653,7 @@
       ]
     },
     {
-      "name": "[concat(variables('SolutionName'), '(' ,'omsaws5', ')')]",
+      "name": "[variables('SolutionName')]",
       "location": "[resourceGroup().location]",
       "tags": {},
       "type": "Microsoft.OperationsManagement/solutions",
@@ -670,7 +670,7 @@
         ]
       },
       "plan": {
-        "name": "[concat(variables('SolutionName'), '(' ,'omsaws5', ')')]",
+        "name": "[variables('SolutionName')]",
         "Version": "[variables('SolutionVersion')]",
         "product": "ContosoSolution",
         "publisher": "[variables('SolutionPublisher')]",
