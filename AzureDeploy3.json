@@ -648,14 +648,14 @@
       "apiVersion": "2015-11-01-preview",
       "name": "[variables('var_Value14')]",
       "type": "Microsoft.OperationalInsights/workspaces",
-      "location": "[parameters('OMS_ResourceGroupLocation')]",
+      "location": "[resourceGroup().location]",
       "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
           "name": "My Demo Solution",
           "type": "views",
-          "location": "[parameters('OMS_ResourceGroupLocation')]",
+          "location": "[resourceGroup().location]",
           "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'),'/views/My Demo Solution')]",
           "dependson": [
             "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', variables('var_Value14'))]"
