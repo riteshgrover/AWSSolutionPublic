@@ -273,7 +273,7 @@
       "name": "[parameters('accountName')]",
       "type": "Microsoft.Automation/automationAccounts",
       "apiVersion": "2015-10-31",
-      "location": "[parameters('OMS_ResourceGroup')]",
+      "location": "[resourceGroup().location]",
       "dependsOn": [],
       "tags": {},
       "properties": {
@@ -286,7 +286,7 @@
           "name": "[variables('runbookName')]",
           "type": "runbooks",
           "apiVersion": "2015-10-31",
-          "location": "[parameters('OMS_ResourceGroup')]",
+          "location": "[resourceGroup().location]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
           ],
