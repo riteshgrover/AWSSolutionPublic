@@ -258,7 +258,7 @@
     "SolutionVersion": "1.1",
     "SolutionPublisher": "Contoso",
     "SolutionName": "Contoso Solution",
-    "LogAnalyticsApiVersion": "2015-11-01-preview",
+    "LogAnalyticsApiVersion": "2015-10-31",
     "ViewAuthor": "user@contoso.com",
     "ViewDescription": "This is a sample view.",
     "ViewName": "Contoso View"
@@ -678,14 +678,14 @@
       }
     },
     {
-      "apiVersion": "2015-11-01-preview",
+      "apiVersion": "2015-10-31",
       "name": "omsaws5",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
       "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]",
       "resources": [
         {
-          "apiVersion": "2015-11-01-preview",
+          "apiVersion": "2015-10-31",
           "name": "Contoso View",
           "type": "views",
           "location": "[resourceGroup().location]",
