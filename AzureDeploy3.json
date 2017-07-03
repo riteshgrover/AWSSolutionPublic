@@ -268,7 +268,7 @@
     {
       "name": "[parameters('accountName')]",
       "type": "Microsoft.Automation/automationAccounts",
-      "apiVersion": "2017-04-26-preview",
+      "apiVersion": "2017-05-15-preview",
       "location": "[resourceGroup().location]",
       "dependsOn": [],
       "tags": {},
