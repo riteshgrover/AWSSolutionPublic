@@ -685,7 +685,7 @@
       "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]",
       "resources": [
         {
-          "apiVersion": "2017-05-15-preview",
+          "apiVersion": "2017-04-26-preview",
           "name": "Contoso View",
           "type": "views",
           "location": "[resourceGroup().location]",
