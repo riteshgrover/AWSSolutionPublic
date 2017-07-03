@@ -678,7 +678,7 @@
       }
     },
     {
-      "apiVersion": "2017-05-15-preview",
+      "apiVersion": "2017-04-26-preview",
       "name": "omsaws5",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
