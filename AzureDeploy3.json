@@ -258,7 +258,7 @@
     "SolutionVersion": "1.1",
     "SolutionPublisher": "Contoso",
     "SolutionName": "Contoso Solution",
-    "LogAnalyticsApiVersion": "2017-05-15-preview",
+    "LogAnalyticsApiVersion": "2015-11-01-preview",
     "ViewAuthor": "user@contoso.com",
     "ViewDescription": "This is a sample view.",
     "ViewName": "Contoso View"
