@@ -255,7 +255,7 @@
     "StartTime": "[parameters('scheduleStartTime')]",
     "TimeZone": "[parameters('scheduleTimeZone')]",
 
-    "SolutionVersion": "1.1",
+    "SolutionVersion": "1.2",
     "SolutionPublisher": "Contoso",
     "SolutionName": "Contoso Solution",
     "LogAnalyticsApiVersion": "2015-11-01-preview",
