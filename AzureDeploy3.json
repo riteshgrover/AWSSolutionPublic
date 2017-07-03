@@ -268,7 +268,7 @@
     {
       "name": "[parameters('accountName')]",
       "type": "Microsoft.Automation/automationAccounts",
-      "apiVersion": "2015-10-31",
+      "apiVersion": "2017-04-26-preview",
       "location": "[resourceGroup().location]",
       "dependsOn": [],
       "tags": {},
@@ -281,7 +281,7 @@
         {
           "name": "[variables('runbookName')]",
           "type": "runbooks",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -301,7 +301,7 @@
         {
           "name": "[variables('runbookName1')]",
           "type": "runbooks",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -321,7 +321,7 @@
         {
           "name": "[variables('runbookName2')]",
           "type": "runbooks",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -341,7 +341,7 @@
         {
           "name": "[variables('runbookName3')]",
           "type": "runbooks",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -361,7 +361,7 @@
         {
           "name": "[variables('runbookName4')]",
           "type": "runbooks",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -381,7 +381,7 @@
         {
           "name": "[variables('var_name')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -396,7 +396,7 @@
         {
           "name": "[variables('var_name1')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -411,7 +411,7 @@
         {
           "name": "[variables('var_name2')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -426,7 +426,7 @@
         {
           "name": "[variables('var_name3')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -441,7 +441,7 @@
         {
           "name": "[variables('var_name4')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -456,7 +456,7 @@
         {
           "name": "[variables('var_name5')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -471,7 +471,7 @@
         {
           "name": "[variables('var_name6')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -486,7 +486,7 @@
         {
           "name": "[variables('var_name7')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -501,7 +501,7 @@
         {
           "name": "[variables('var_name8')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -516,7 +516,7 @@
         {
           "name": "[variables('var_name9')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -531,7 +531,7 @@
         {
           "name": "[variables('var_name10')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -546,7 +546,7 @@
         {
           "name": "[variables('var_name11')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -561,7 +561,7 @@
         {
           "name": "[variables('var_name12')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -576,7 +576,7 @@
         {
           "name": "[variables('var_name13')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -591,7 +591,7 @@
         {
           "name": "[variables('var_name14')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -606,7 +606,7 @@
         {
           "name": "[variables('var_name15')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -621,7 +621,7 @@
         {
           "name": "[variables('var_name16')]",
           "type": "variables",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -636,7 +636,7 @@
         {
           "name": "[variables('scheduleName')]",
           "type": "schedules",
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "tags": {},
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
@@ -678,14 +678,14 @@
       }
     },
     {
-      "apiVersion": "2015-10-31",
+      "apiVersion": "2017-04-26-preview",
       "name": "omsaws5",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
       "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]",
       "resources": [
         {
-          "apiVersion": "2015-10-31",
+          "apiVersion": "2017-04-26-preview",
           "name": "Contoso View",
           "type": "views",
           "location": "[resourceGroup().location]",
