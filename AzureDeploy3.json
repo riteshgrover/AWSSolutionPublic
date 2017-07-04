@@ -682,7 +682,7 @@
       "name": "omsaws5",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', 'parameters('OMS_ResourceGroup')','/providers/Microsoft.OperationalInsights/workspaces/', 'parameters('OMS_WorkspaceName')']",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', [variables('var_Value13')] ,'/providers/Microsoft.OperationalInsights/workspaces/', [variables('var_Value14')]']",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
