@@ -236,7 +236,7 @@
     "var_Description14": "OMS Workspace Name",
     "var_Encrypted14": 0,
     "var_Type14": "string",
-    "var_Value14": "[parameters('OMS_WorkspaceName')]",
+    "var_Value14": "'[parameters('OMS_WorkspaceName')]'",
     "var_name15": "RDS",
     "var_Description15": "RDS Flag",
     "var_Encrypted15": 0,
@@ -254,7 +254,6 @@
     "Frequency": "hour",
     "StartTime": "[parameters('scheduleStartTime')]",
     "TimeZone": "[parameters('scheduleTimeZone')]",
-    "rgn" : "[resourcegroup().name]",
 
     "SolutionVersion": "1.2",
     "SolutionPublisher": "Contoso",
@@ -661,7 +660,7 @@
       "type": "Microsoft.OperationsManagement/solutions",
       "apiVersion": "[variables('LogAnalyticsApiVersion')]",
       "dependsOn": [
-        "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]"
+        "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/Contoso View')]"
       ],
       "properties": {
         "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/omsaws5')]",
