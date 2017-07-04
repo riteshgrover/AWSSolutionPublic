@@ -254,6 +254,7 @@
     "Frequency": "hour",
     "StartTime": "[parameters('scheduleStartTime')]",
     "TimeZone": "[parameters('scheduleTimeZone')]",
+    "rgn" : "[resourcegroup().name]",
 
     "SolutionVersion": "1.2",
     "SolutionPublisher": "Contoso",
@@ -586,7 +587,7 @@
             "description": "[variables('var_Description13')]",
             "isEncrypted": "[variables('var_Encrypted13')]",
             "type": "[variables('var_Type13')]",
-            "value": "'[variables('var_Value13')]'"
+            "value": "[variables('var_Value13')]"
           }
         },
         {
@@ -660,7 +661,7 @@
       "type": "Microsoft.OperationsManagement/solutions",
       "apiVersion": "[variables('LogAnalyticsApiVersion')]",
       "dependsOn": [
-        "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]"
+        "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]"
       ],
       "properties": {
         "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/omsaws5')]",
@@ -683,7 +684,7 @@
       "name": "omsaws5",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup'), '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
