@@ -643,11 +643,11 @@
         "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/Contoso View')]"
       ],
       "properties": {
-        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName')]",
+        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'))]",
         "referencedResources": [
         ],
         "containedResources": [
-          "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/Contoso View')]"
+          "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]"
         ]
       },
       "plan": {
