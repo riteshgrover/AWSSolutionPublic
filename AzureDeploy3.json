@@ -586,7 +586,7 @@
             "description": "[variables('var_Description13')]",
             "isEncrypted": "[variables('var_Encrypted13')]",
             "type": "[variables('var_Type13')]",
-            "value": "parameters('OMS_ResourceGroup')"
+            "value": "'[variables('var_Value13')]'"
           }
         },
         {
