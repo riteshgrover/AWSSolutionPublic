@@ -261,8 +261,7 @@
     "LogAnalyticsApiVersion": "2015-11-01-preview",
     "ViewAuthor": "user@contoso.com",
     "ViewDescription": "This is a sample view.",
-    "ViewName": "Contoso View",
-    "rgn": "[resourceGroup().name]"
+    "ViewName": "Contoso View"
 
 
   },
@@ -684,7 +683,7 @@
       "name": "omsaws5",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('OMS_ResourceGroup') ,'/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_workspaceName')]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5']",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
