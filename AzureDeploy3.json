@@ -665,7 +665,7 @@
     },
     {
       "apiVersion": "2017-04-26-preview",
-      "name": "omsaws5",
+      "name": "parameters('OMS_WorkspaceName')",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
       "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups', '/AutomationAccountRG4/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]",
