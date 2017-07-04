@@ -667,7 +667,7 @@
         "referencedResources": [
         ],
         "containedResources": [
-          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/omsaws','/views/Contoso View')]"
+          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/','omsaws5','/views/Contoso View')]"
         ]
       },
       "plan": {
