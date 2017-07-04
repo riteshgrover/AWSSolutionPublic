@@ -259,6 +259,11 @@
     "ViewName": "Contoso View"
 
 
+
+
+
+
+
   },
   "resources": [
     {
@@ -632,6 +637,21 @@
           }
         }
       ]
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     },
     {
       "name": "[variables('SolutionName')]",
@@ -643,11 +663,11 @@
         "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/Contoso View')]"
       ],
       "properties": {
-        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'))]",
+        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/omsaws5')]",
         "referencedResources": [
         ],
         "containedResources": [
-          "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5','/views/Contoso View')]"
+          "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/omsaws','/views/Contoso View')]"
         ]
       },
       "plan": {
@@ -663,7 +683,7 @@
       "name": "omsaws5",
       "type": "Microsoft.OperationalInsights/workspaces",
       "location": "[resourceGroup().location]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/omsaws5')]",
       "resources": [
         {
           "apiVersion": "2015-11-01-preview",
@@ -672,7 +692,7 @@
           "location": "[resourceGroup().location]",
           "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/Contoso View')]",
           "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups'/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', 'omsaws5')]"
+            "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups'/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/omsaws5')]"
           ],
           "properties": {
             "Id": "Contoso View",
