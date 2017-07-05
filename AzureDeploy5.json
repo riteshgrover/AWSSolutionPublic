@@ -3,146 +3,153 @@
   "contentVersion": "1.0",
   "parameters": {
     "accountName": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "The name of the Azure Automation account to deploy to."
       }
     },
     "subscriptionId": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "Azure subscriptionID"
       }
     },
     "OMS_PrimaryKey": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "OMS Workspace Primary Key "
       }
     },
     "OMS_WorkspaceID": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "OMS WorkspaceID "
       }
     },
     "OMS_WorkspaceName": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "OMS Workspace Name"
       }
     },
+    "OMS_WorkspaceName_view": {
+      "type": "String",
+      "metadata": {
+        "description": "OMS Workspace Name for views, without quotes"
+      }
+    },
     "OMS_ResourceGroup": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "OMS Resource Group Name"
       }
     },
     "AWS_Region": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "AWS Region"
       }
     },
     "AWS_Accesskey": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "AWS AccessKey"
       }
     },
     "AWS_Profilename": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "AWS Profilename"
       }
     },
     "AWS_Secretkey": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "description": "AWS secretkey"
       }
     },
     "aws_dim_cloudtrail": {
-      "type": "string",
       "defaultValue": " ",
+      "type": "String",
       "metadata": {
         "description": "AWS cloudtrail dimensions"
       }
     },
     "aws_dim_rds": {
-      "type": "string",
       "defaultValue": " ",
+      "type": "String",
       "metadata": {
         "description": "AWS rds dimensions"
       }
     },
     "aws_dimensionperf": {
-      "type": "string",
       "defaultValue": " ",
+      "type": "String",
       "metadata": {
         "description": "AWS performance dimensions"
       }
     },
     "aws_metricname": {
-      "type": "string",
       "defaultValue": "'CPUUtilization,NetworkOut,NetworkIn,DiskWriteOps,DiskReadBytes'",
+      "type": "String",
       "metadata": {
         "description": "AWS performance metrics"
       }
     },
     "aws_metricscloudtrail": {
-      "type": "string",
       "defaultValue": "'IncomingBytes,IncomingLogEvents'",
+      "type": "String",
       "metadata": {
         "description": "AWS cloudtrail metrics"
       }
     },
     "aws_metricsrds": {
-      "type": "string",
       "defaultValue": "'DiskQueueDepth,DatabaseConnections'",
+      "type": "String",
       "metadata": {
         "description": "AWS rds metrics"
       }
     },
     "CLOUDTRAIL": {
-      "type": "string",
       "defaultValue": "'True'",
-      "allowedValues": ["'True'","'False'"],
+      "type": "String",
+      "allowedValues": [ "'True'", "'False'" ],
       "metadata": {
         "description": "Boolean for cloudtrail data"
       }
     },
     "EC2": {
-      "type": "string",
       "defaultValue": "'True'",
+      "type": "String",
       "allowedValues": [ "'True'", "'False'" ],
       "metadata": {
         "description": "Boolean for ec2 data"
       }
     },
     "RDS": {
-      "type": "string",
       "defaultValue": "'True'",
+      "type": "String",
       "allowedValues": [ "'True'", "'False'" ],
       "metadata": {
         "description": "Boolean for rds data"
       }
     },
     "scheduleStartTime": {
-      "type": "string",
+      "type": "String",
       "metadata": {
         "Description": "Start time for shedule."
       }
     },
     "scheduleTimeZone": {
-      "type": "string",
+      "type": "String",
+      "defaultValue": "India Standard Time",
       "metadata": {
         "Description": "Time zone for schedule."
       }
     },
     "credentialName": {
-      "type": "string",
       "defaultValue": "DefaultAzureCredential",
+      "type": "String",
       "metadata": {
         "description": "DefaultAzureCredential is the name of the Automation credential used in this runbook. This credential allows you to authenticate to Azure. "
       }
@@ -165,7 +172,7 @@
     "runbookName4": "omsinput_rds",
     "scriptUri4": "https://raw.githubusercontent.com/riteshgrover/AWSsolutionPublic/master/omsinput_rds.ps1",
     "runbookDescription4": "RDS Import Runbook",
-    "var_name": "aws_access",
+    "var_name": "aws_accesskey",
     "var_Description": "AWS Access Key",
     "var_Encrypted": 0,
     "var_Type": "string",
@@ -230,16 +237,16 @@
     "var_Encrypted12": 0,
     "var_Type12": "string",
     "var_Value12": "[parameters('OMS_PrimaryKey')]",
-    "var_name13": "OMS_ResourceGroup",
+    "var_name13": "OMSrgname",
     "var_Description13": "OMS Resource Group",
     "var_Encrypted13": 0,
     "var_Type13": "string",
     "var_Value13": "[parameters('OMS_ResourceGroup')]",
-    "var_name14": "OMS_WorkspaceName",
+    "var_name14": "OMSwkspname",
     "var_Description14": "OMS Workspace Name",
     "var_Encrypted14": 0,
     "var_Type14": "string",
-    "var_Value14": "'[parameters('OMS_WorkspaceName')]'",
+    "var_Value14": "[parameters('OMS_WorkspaceName')]",
     "var_name15": "RDS",
     "var_Description15": "RDS Flag",
     "var_Encrypted15": 0,
@@ -257,24 +264,20 @@
     "Frequency": "hour",
     "StartTime": "[parameters('scheduleStartTime')]",
     "TimeZone": "[parameters('scheduleTimeZone')]",
-
     "SolutionVersion": "1.2",
     "SolutionPublisher": "Contoso",
-    "SolutionName": "aws-oms",
+    "SolutionName": "projectmsf",
     "LogAnalyticsApiVersion": "2015-11-01-preview",
     "ViewAuthor": "user@contoso.com",
     "ViewDescription": "This is a sample view.",
     "ViewName": "Contoso View"
-
-
   },
   "resources": [
     {
-      "name": "[parameters('accountName')]",
       "type": "Microsoft.Automation/automationAccounts",
+      "name": "[parameters('accountName')]",
       "apiVersion": "2017-05-15-preview",
       "location": "[resourceGroup().location]",
-      "dependsOn": [],
       "tags": {},
       "properties": {
         "sku": {
@@ -283,13 +286,10 @@
       },
       "resources": [
         {
-          "name": "[variables('runbookName')]",
           "type": "runbooks",
+          "name": "[variables('runbookName')]",
           "apiVersion": "2017-05-15-preview",
           "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
           "tags": {},
           "properties": {
             "runbookType": "Script",
@@ -300,16 +300,16 @@
               "uri": "[variables('scriptUri')]",
               "version": "1.0.0.0"
             }
-          }
-        },
-        {
-          "name": "[variables('runbookName1')]",
-          "type": "runbooks",
-          "apiVersion": "2017-05-15-preview",
-          "location": "[resourceGroup().location]",
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "runbooks",
+          "name": "[variables('runbookName1')]",
+          "apiVersion": "2017-05-15-preview",
+          "location": "[resourceGroup().location]",
           "tags": {},
           "properties": {
             "runbookType": "Script",
@@ -320,16 +320,16 @@
               "uri": "[variables('scriptUri1')]",
               "version": "1.0.0.0"
             }
-          }
-        },
-        {
-          "name": "[variables('runbookName2')]",
-          "type": "runbooks",
-          "apiVersion": "2017-05-15-preview",
-          "location": "[resourceGroup().location]",
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "runbooks",
+          "name": "[variables('runbookName2')]",
+          "apiVersion": "2017-05-15-preview",
+          "location": "[resourceGroup().location]",
           "tags": {},
           "properties": {
             "runbookType": "Script",
@@ -340,16 +340,16 @@
               "uri": "[variables('scriptUri2')]",
               "version": "1.0.0.0"
             }
-          }
-        },
-        {
-          "name": "[variables('runbookName3')]",
-          "type": "runbooks",
-          "apiVersion": "2017-05-15-preview",
-          "location": "[resourceGroup().location]",
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "runbooks",
+          "name": "[variables('runbookName3')]",
+          "apiVersion": "2017-05-15-preview",
+          "location": "[resourceGroup().location]",
           "tags": {},
           "properties": {
             "runbookType": "Script",
@@ -360,16 +360,16 @@
               "uri": "[variables('scriptUri3')]",
               "version": "1.0.0.0"
             }
-          }
-        },
-        {
-          "name": "[variables('runbookName4')]",
-          "type": "runbooks",
-          "apiVersion": "2017-05-15-preview",
-          "location": "[resourceGroup().location]",
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "runbooks",
+          "name": "[variables('runbookName4')]",
+          "apiVersion": "2017-05-15-preview",
+          "location": "[resourceGroup().location]",
           "tags": {},
           "properties": {
             "runbookType": "Script",
@@ -380,256 +380,271 @@
               "uri": "[variables('scriptUri4')]",
               "version": "1.0.0.0"
             }
-          }
-        },
-        {
-          "name": "[variables('var_name')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description')]",
             "isEncrypted": "[variables('var_Encrypted')]",
             "type": "[variables('var_Type')]",
             "value": "[variables('var_Value')]"
-          }
-        },
-        {
-          "name": "[variables('var_name1')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name1')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description1')]",
             "isEncrypted": "[variables('var_Encrypted1')]",
             "type": "[variables('var_Type1')]",
             "value": "[variables('var_Value1')]"
-          }
-        },
-        {
-          "name": "[variables('var_name2')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name2')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description2')]",
             "isEncrypted": "[variables('var_Encrypted2')]",
             "type": "[variables('var_Type2')]",
             "value": "[variables('var_Value2')]"
-          }
-        },
-        {
-          "name": "[variables('var_name3')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name3')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description3')]",
             "isEncrypted": "[variables('var_Encrypted3')]",
             "type": "[variables('var_Type3')]",
             "value": "[variables('var_Value3')]"
-          }
-        },
-        {
-          "name": "[variables('var_name4')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name4')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description4')]",
             "isEncrypted": "[variables('var_Encrypted4')]",
             "type": "[variables('var_Type4')]",
             "value": "[variables('var_Value4')]"
-          }
-        },
-        {
-          "name": "[variables('var_name5')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name5')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description5')]",
             "isEncrypted": "[variables('var_Encrypted5')]",
             "type": "[variables('var_Type5')]",
             "value": "[variables('var_Value5')]"
-          }
-        },
-        {
-          "name": "[variables('var_name6')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name6')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description6')]",
             "isEncrypted": "[variables('var_Encrypted6')]",
             "type": "[variables('var_Type6')]",
             "value": "[variables('var_Value6')]"
-          }
-        },
-        {
-          "name": "[variables('var_name7')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name7')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description7')]",
             "isEncrypted": "[variables('var_Encrypted7')]",
             "type": "[variables('var_Type7')]",
             "value": "[variables('var_Value7')]"
-          }
-        },
-        {
-          "name": "[variables('var_name8')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name8')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description8')]",
             "isEncrypted": "[variables('var_Encrypted8')]",
             "type": "[variables('var_Type8')]",
             "value": "[variables('var_Value8')]"
-          }
-        },
-        {
-          "name": "[variables('var_name9')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name9')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description9')]",
             "isEncrypted": "[variables('var_Encrypted9')]",
             "type": "[variables('var_Type9')]",
             "value": "[variables('var_Value9')]"
-          }
-        },
-        {
-          "name": "[variables('var_name10')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name10')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description10')]",
             "isEncrypted": "[variables('var_Encrypted10')]",
             "type": "[variables('var_Type10')]",
             "value": "[variables('var_Value10')]"
-          }
-        },
-        {
-          "name": "[variables('var_name11')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name11')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description11')]",
             "isEncrypted": "[variables('var_Encrypted11')]",
             "type": "[variables('var_Type11')]",
             "value": "[variables('var_Value11')]"
-          }
-        },
-        {
-          "name": "[variables('var_name12')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name12')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description12')]",
             "isEncrypted": "[variables('var_Encrypted12')]",
             "type": "[variables('var_Type12')]",
             "value": "[variables('var_Value12')]"
-          }
-        },
-        {
-          "name": "[variables('var_name13')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name13')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description13')]",
             "isEncrypted": "[variables('var_Encrypted13')]",
             "type": "[variables('var_Type13')]",
             "value": "[variables('var_Value13')]"
-          }
-        },
-        {
-          "name": "[variables('var_name15')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name14')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
+          "properties": {
+            "description": "[variables('var_Description14')]",
+            "isEncrypted": "[variables('var_Encrypted14')]",
+            "type": "[variables('var_Type14')]",
+            "value": "[variables('var_Value14')]"
+          },
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name15')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description15')]",
             "isEncrypted": "[variables('var_Encrypted15')]",
             "type": "[variables('var_Type15')]",
             "value": "[variables('var_Value15')]"
-          }
-        },
-        {
-          "name": "[variables('var_name16')]",
-          "type": "variables",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "variables",
+          "name": "[variables('var_name16')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('var_Description16')]",
             "isEncrypted": "[variables('var_Encrypted16')]",
             "type": "[variables('var_Type16')]",
             "value": "[variables('var_Value16')]"
-          }
-        },
-        {
-          "name": "[variables('scheduleName')]",
-          "type": "schedules",
-          "apiVersion": "2017-05-15-preview",
-          "tags": {},
+          },
           "dependsOn": [
             "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
-          ],
+          ]
+        },
+        {
+          "type": "schedules",
+          "name": "[variables('scheduleName')]",
+          "apiVersion": "2017-05-15-preview",
+          "tags": {},
           "properties": {
             "description": "[variables('scheduleDescription')]",
             "startTime": "[variables('startTime')]",
@@ -637,66 +652,64 @@
             "isEnabled": "[variables('IsEnabled')]",
             "interval": "[variables('Interval')]",
             "frequency": "[variables('Frequency')]"
-          }
+          },
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+          ]
         }
-      ]
+      ],
+      "dependsOn": []
     },
     {
-      "name": "[variables('SolutionName')]",
-      "location": "[resourceGroup().location]",
-      "tags": {},
       "type": "Microsoft.OperationsManagement/solutions",
+      "name": "[variables('SolutionName')]",
       "apiVersion": "[variables('LogAnalyticsApiVersion')]",
-      "dependsOn": [
-        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/Cloudtrail log events')]",
-        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS EC2 Disk Metrics')]",
-        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS Metric Overview')]",
-        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/RDS DiskQueueDepth Metric')]",
-        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS EC2 CPUUtilization')]",
-        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS EC2 Networkin')]"
-
-      ],
-      "properties": {
-        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]",
-        "referencedResources": [
-        ],
-        "containedResources": [
-          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/Cloudtrail log events')]",
-          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS EC2 Disk Metrics')]",
-          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS Metric Overview')]",
-          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/RDS DiskQueueDepth Metric')]",
-          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS EC2 CPUUtilization')]",
-          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName'),'/views/AWS EC2 Networkin')]"
-
-        ]
-      },
+      "location": "[resourceGroup().location]",
       "plan": {
         "name": "[variables('SolutionName')]",
         "Version": "[variables('SolutionVersion')]",
         "product": "ContosoSolution",
         "publisher": "[variables('SolutionPublisher')]",
         "promotionCode": ""
-      }
+      },
+      "tags": {},
+      "properties": {
+        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]",
+        "referencedResources": [],
+        "containedResources": [
+          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/Cloudtrail log events')]",
+          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 Disk Metrics')]",
+          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS Metric Overview')]",
+          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/RDS DiskQueueDepth Metric')]",
+          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 CPUUtilization')]",
+          "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 Networkin')]"
+        ]
+      },
+      "dependsOn": [
+        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/Cloudtrail log events')]",
+        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 Disk Metrics')]",
+        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS Metric Overview')]",
+        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/RDS DiskQueueDepth Metric')]",
+        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 CPUUtilization')]",
+        "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 Networkin')]"
+      ]
     },
     {
-      "apiVersion": "2017-04-26-preview",
-      "name": "[parameters('OMS_WorkspaceName')]",
+      "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]",
       "type": "Microsoft.OperationalInsights/workspaces",
+      "name": "[parameters('OMS_WorkspaceName_view')]",
+      "apiVersion": "2017-04-26-preview",
       "location": "[resourceGroup().location]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]",
       "resources": [
         {
-          "apiVersion": "2015-11-01-preview",
-          "name": "Cloudwatch log events",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'),'/views/Cloudtrail log events')]",
           "type": "views",
+          "name": "Cloudtrail log events",
+          "apiVersion": "2015-11-01-preview",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'),'/views/Cloudtrail log events')]",
-          "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]"
-          ],
           "properties": {
-            "Id": "Cloudwatch log events",
-            "Name": "Cloudwatch log events",
+            "Id": "Cloudtrail log events",
+            "Name": "Cloudtrail log events",
             "Author": "rgrover@microsoft.com",
             "Source": "Local",
             "Version": 1,
@@ -915,17 +928,17 @@
                 }
               }
             }
-          }
+          },
+          "dependsOn": [
+            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]"
+          ]
         },
         {
-          "apiVersion": "2015-11-01-preview",
-          "name": "AWS EC2 Disk Metrics",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 Disk Metrics')]",
           "type": "views",
+          "name": "AWS EC2 Disk Metrics",
+          "apiVersion": "2015-11-01-preview",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'),'/views/AWS EC2 Disk Metrics')]",
-          "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]"
-          ],
           "properties": {
             "Id": "AWS EC2 Disk Metrics",
             "Name": "AWS EC2 Disk Metrics",
@@ -1147,17 +1160,17 @@
                 }
               }
             }
-          }
+          },
+          "dependsOn": [
+            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]"
+          ]
         },
         {
-          "apiVersion": "2015-11-01-preview",
-          "name": "AWS Metric Overview",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'),'/views/AWS Metric Overview')]",
           "type": "views",
+          "name": "AWS Metric Overview",
+          "apiVersion": "2015-11-01-preview",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'),'/views/AWS Metric Overview')]",
-          "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]"
-          ],
           "properties": {
             "Id": "AWS Metric Overview",
             "Name": "AWS Metric Overview",
@@ -1261,17 +1274,17 @@
                 }
               }
             }
-          }
+          },
+          "dependsOn": [
+            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]"
+          ]
         },
         {
-          "apiVersion": "2015-11-01-preview",
-          "name": "AWS Metric Overview",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'),'/views/RDS DiskQueueDepth Metric')]",
           "type": "views",
+          "name": "RDS DiskQueueDepth Metric",
+          "apiVersion": "2015-11-01-preview",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'),'/views/RDS DiskQueueDepth Metric')]",
-          "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]"
-          ],
           "properties": {
             "Id": "RDS DiskQueueDepth Metric",
             "Name": "RDS DiskQueueDepth Metric",
@@ -1493,17 +1506,17 @@
                 }
               }
             }
-          }
+          },
+          "dependsOn": [
+            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]"
+          ]
         },
         {
-          "apiVersion": "2015-11-01-preview",
-          "name": "AWS Metric Overview",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 CPUUtilization')]",
           "type": "views",
+          "name": "AWS EC2 CPUUtilization",
+          "apiVersion": "2015-11-01-preview",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'),'/views/AWS EC2 CPUUtilization')]",
-          "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]"
-          ],
           "properties": {
             "Id": "AWS EC2 CPUUtilization",
             "Name": "AWS EC2 CPUUtilization",
@@ -1725,17 +1738,17 @@
                 }
               }
             }
-          }
+          },
+          "dependsOn": [
+            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]"
+          ]
         },
         {
-          "apiVersion": "2015-11-01-preview",
-          "name": "AWS Metric Overview",
+          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'),'/views/AWS EC2 Networkin')]",
           "type": "views",
+          "name": "AWS EC2 Networkin",
+          "apiVersion": "2015-11-01-preview",
           "location": "[resourceGroup().location]",
-          "id": "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'),'/views/AWS EC2 Networkin')]",
-          "dependson": [
-            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName'))]"
-          ],
           "properties": {
             "Id": "AWS EC2 Networkin",
             "Name": "AWS EC2 Networkin",
@@ -1957,11 +1970,13 @@
                 }
               }
             }
-          }
+          },
+          "dependsOn": [
+            "[Concat('/subscriptions/', parameters('subscriptionId'),'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/',parameters('OMS_WorkspaceName_view'))]"
+          ]
         }
       ]
     }
   ],
-
   "outputs": {}
 }
