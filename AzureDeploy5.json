@@ -256,7 +256,7 @@
     "var_Description16": "OMS Workspace ID",
     "var_Encrypted16": 0,
     "var_Type16": "string",
-    "var_Value16": "[parameters('OMS_WorkspaceID')]",
+    "var_Value16": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('OMS_WorkspaceName')), '2015-03-20').customerId]",
     "scheduleName": "Schedule Start Time",
     "scheduleDescription": "Schedule",
     "IsEnabled": "true",
